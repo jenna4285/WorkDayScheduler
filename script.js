@@ -5,7 +5,6 @@ var today = moment();
 // variables for local storage 
 var timeColumn = $(".timeColumn");
 var saveButton = $(".saveBtn");
-
 console.log(timeColumn);
 
 // Display Day/Date at Header
@@ -14,23 +13,26 @@ $("#currentDay").text(today.format("dddd, MMM Do, YYYY"));
 // local storage for "input"
 function saveFormInput (event) {
     event.preventDefault();
+    var timeBlock = $(this).val();
     
     var toDoItem = $('[name=fname]').val();
+    console.log(toDoItem);
 
-    var toDoDisplay = {
-        time: $('.timeColumn'),
-        toDoItem: toDoItem,
-    };
+    $(".timeColumn").each(function( index, time ) {
+        var x = time;
+        console.log(x);
+    });
+
+
 
     if (!toDoItem) {
         console.log("No to do items in form!");
         return;
     } else {
-       for (let i=0; i <localStorage.length; i++) {
-           localStorage.setItem("activities", JSON.stringify(toDoDisplay));
+        localStorage.setItem(timeBlock, toDoItem);
     }
-}
-    console.log(toDoDisplay);
+
+    
 }
 
 
@@ -53,6 +55,6 @@ function saveFormInput (event) {
 //      } else {
 //          input.addClass("future");
 //      }
-//  })
+// //  })
 
  saveButton.on('click', saveFormInput);
