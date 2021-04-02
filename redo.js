@@ -2,6 +2,7 @@ var today = moment();
 var saveButton = $(".saveBtn");
 // var now = moment().format("HH");
 var now = 12;
+var desc = $(".description");
 console.log(now);
 
 var timeColumn = $(".time-block");
@@ -44,22 +45,31 @@ function saveFormInput (event) {
 
 // if statement for color class (past present future)
 
-    for (i=0; i<timeColumn.length; i++)
-       var temp = timeColumn[i];
-       console.log(timeColumn)
-    if (timeColumn[i]===now) {
-       temp.classList.remove("past");
-       temp.classList.remove("future");
-       temp.classList.add("present");
-    } else if (timeColumn[i]<now) {
-       temp.classList.add("past");
-       temp.classList.remove("future");
-       temp.classList.remove("present");
-    } else if (timeColumn[i]>now) {
-       temp.classList.remove("past");
-       temp.classList.add("future");
-       temp.classList.remove("present");
-    }
+    // for (var i=0; i<timeColumn.length; i++){
+     $(".hour").each (function (){
 
+   
+    //    document.getElementsByClassName("hour")[i].value;
+    
+       var timeStamp = $(this).attr("value");
+       console.log(timeStamp);
+       console.log(now);
+       $(this).addClass("past");
+       console.log($(this));
+    if (timeStamp==now) {
+       $(this).removeClass("past");
+       $(this).removeClass("future");
+       $(this).addClass("present");
+    } else if (timeStamp<now) {
+        $(this).addClass("past");
+       $(this).removeClass("future");
+       $(this).removeClass("present");
+    } else if (timeStamp>now) {
+        $(this).removeClass("past");
+       $(this).addClass("future");
+       $(this).removeClass("present");
+    }
+ }
+)  
 
 saveButton.on('click', saveFormInput);
